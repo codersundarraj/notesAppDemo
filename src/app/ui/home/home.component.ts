@@ -91,23 +91,27 @@ export class HomeComponent implements OnInit {
   //add new folder
   createFolder(){
     var folderName = prompt("Folder Name", "");
-    var newFolder = {
-      id: Math.floor(100000000 + Math.random() * 900000000),
-      name: folderName ? folderName : "New Folder " + (this.folders.length + 1),
-      type : "folder",
-      parent : this.parentFolderId
+
+    if (folderName) {
+        var newFolder = {
+            id: Math.floor(100000000 + Math.random() * 900000000),
+            name: folderName ? folderName : "New Folder " + (this.folders.length + 1),
+            type: "folder",
+            parent: this.parentFolderId
+        }
+        if (this.jsonData && this.jsonData.folder) {
+            this.jsonData.folder.push(newFolder);
+        } else {
+            let list = { "folder": [], "file": [] }
+            list.folder.push(newFolder);
+            this.jsonData = list;
+        }
+        this.dataService.addData(this.jsonData).subscribe(res => {
+            this.jsonData = res;
+            this.loadFolders();
+        });
     }
-      if (this.jsonData && this.jsonData.file && this.jsonData.file.length > 0) {
-          this.jsonData.folder.push(newFolder);
-      } else {
-          let list = { "folder": [], "file": [] }
-          list.folder.push(newFolder);
-          this.jsonData = list;
-      }
-    this.dataService.addData(this.jsonData).subscribe(res => {
-      this.jsonData = res;
-      this.loadFolders();
-    });
+    
   }
 
   //current active path
@@ -146,6 +150,7 @@ export class HomeComponent implements OnInit {
     for (var i in this.jsonData.file) {
       if (this.jsonData.file[i].id == data.id) {
         isUpdate = true;
+        data.date = new Date().toString();
         this.jsonData.file[i] = data;
         break; //Stop this loop, we found it!
       }
