@@ -31,8 +31,8 @@ export class NotesComponent implements OnInit {
     this.delete.emit(id);
     this.isView = false;
   }
-  createNotes(){
-    this.add.emit();
+  createNotes(ev){
+    this.add.emit(ev);
   }
   searchTerm(text){
     this.search.emit(text);

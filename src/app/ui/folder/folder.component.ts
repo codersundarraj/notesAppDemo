@@ -29,8 +29,8 @@ export class FolderComponent implements OnInit {
     this.activeFolder.emit(data);
   }
 
-  createFolder():void{
-    this.addFolder.emit();
+  createFolder(ev):void{
+    this.addFolder.emit(ev);
   }
 
 }
