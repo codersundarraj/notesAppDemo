@@ -1,0 +1,13 @@
+<div id="wrapper" *ngIf="jsonData">
+    <div *ngIf="folders && showFolder" style="width:15vw">
+        <app-folder [folders]="folders" (moveBack)="backToFolder($event)" 
+            [parentId]="parentFolderId" [showFolder]="showFolder" 
+            (activeFolder)="selectFolder($event)" (addFolder)="createFolder($event)" [updateContent]="activeDirectory"></app-folder>
+    </div>
+    <div *ngIf="notesList" [ngStyle]="{'width':showFolder ? '85vw' : '100vw' }">
+        <app-notes [notesList]="notesList" [selectedNote]="selectedNote" 
+            [isView]="isView" [showFolder]="showFolder" (hideFolderView)="updateFolderView($event)"
+            (update)="updateNote($event)" (delete)="deleteNote($event)" (add)="createNotes($event)"
+            (search)="searchTerm($event)" ></app-notes>
+    </div>
+</div>

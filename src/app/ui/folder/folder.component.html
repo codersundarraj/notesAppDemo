@@ -1,0 +1,21 @@
+<!--Left side folder Menu section-->
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar" *ngIf="showFolder">
+    <a class="sidebar-brand d-flex align-items-center">
+        <i class="fa fa-arrow-circle-left pointer updated-i" aria-hidden="true" title="Back"
+            (click)="backToFolder()"></i>
+    </a>
+    <hr class="sidebar-divider my-0">
+    <hr class="sidebar-divider">
+    <div class="sidebar-heading active-path" (click)="backToFolder()" [textContent]="updateContent"></div>
+    <li class="nav-item pointer" *ngFor="let folder of folders" (click)="selectFolder(folder)">
+        <a class="nav-link collapsed" aria-expanded="true" aria-controls="collapsePages">
+            <i class="fas fa-fw fa-folder updated-i"></i>
+            <span>{{folder.name}}</span>
+        </a>
+    </li>
+    <hr class="sidebar-divider d-none d-md-block">
+    <div class="text-left d-none d-md-inline">
+        <i class="fa fa-plus-circle pointer updated-i create-folder-i" aria-hidden="true" title="Create new folder"
+            (click)="createFolder()"> New Folder</i>
+    </div>
+</ul>

@@ -1,0 +1,100 @@
+<!--Main section-->
+<div id="content-wrapper" class="d-flex flex-column">
+    <div id="content">
+        <!--Header section-->
+        <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow">
+            <div class="col-lg-4 fa-pull-left p-0">
+                <div class="input-group">
+                    <div class="p-l-r-5 pointer m-0">
+                        <a class="cursorPointer" (click)="setFolderVew(showFolder = !showFolder)">
+                            <i class="fa fa-folder-open-o" aria-hidden="true" title="Show/Hide Folder"></i>
+                        </a>
+                    </div>
+                    <div class="p-l-r-5 pointer">
+                        <button class="normal-button" [disabled]="!selectedNote" (click)="deleteNote(selectedNote.id)">
+                            <i class="fa fa-trash" aria-hidden="true" title="Delete selected"
+                                ></i>
+                        </button>
+                    </div>
+                    <div class="p-l-r-5 pointer">
+                        <i class="fa fa-edit" title="Create New Note" (click)="createNotes()"></i>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-8 pull-right p-0">
+                <!-- <form  class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search fa-pull-right"> -->
+                <div class="input-group search-container">
+                    <input (keyup.enter)="searchTerm(search.value)" type="text"
+                        class="form-control bg-white small" placeholder="Search for..." aria-label="Search"
+                        aria-describedby="basic-addon2" #search>
+                    <!--<div class="input-group-append">
+                        <button class="btn btn-basic" type="button" (click)="searchTerm(search.value)">
+                            <i class="fas fa-search fa-sm"></i>
+                        </button>
+                    </div>-->
+                </div>
+                <!-- </form> -->
+            </div>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown no-arrow d-sm-none">
+                    <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-search fa-fw"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                        aria-labelledby="searchDropdown">
+                        <form class="form-inline mr-auto w-100 navbar-search">
+                            <div class="input-group">
+                                <input type="text" class="form-control bg-light border-0 small"
+                                    placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button">
+                                        <i class="fas fa-search fa-sm"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <!--Note section-->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-4 notes-list">
+                    <div class="card pointer" *ngFor="let notes of notesList" id="cardVisited"
+                        (click)="selectNote(notes)">
+                        <div [ngClass]="{'note-active': selectedNote && selectedNote.id == notes.id}">
+                            <div class="pad-title py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold ">{{notes.title}}</h6>
+                            </div>
+                            <div class="card-body notes-description pointer">
+                                {{notes.description}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8" style="min-height:100%">
+                    <div class="card bg-white" *ngIf="selectedNote && isView">
+                        <div class="card-body">
+                            <h5>Title</h5>
+                            <input type="text" id="noteTitle" [(ngModel)]='selectedNote.title' class="form-control">
+                            <h5 class="m-t-10">Description</h5>
+                            <textarea class="form-control" id="desc" [(ngModel)]='selectedNote.description' rows="10">                             
+                            </textarea>
+                        </div>
+                        <div class="col-sm-2 save">
+                            <button class="btn btn-success" (click)="updateNote(selectedNote)">Save</button>
+                        </div>
+                    </div>
+                    <div class="card" *ngIf="!selectedNote && !isView">
+                        <div class="card-body">
+                            Please Select a Folder / File to View Notes
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
