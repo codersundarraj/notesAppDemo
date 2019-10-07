@@ -1,3 +1,10 @@
+step 1: npm install
+
+step 2: ng serve
+
+output: http://localhost:4200
+
+
 # Explorer
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.3.
@@ -26,22 +33,3 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
-
-file1: explorer
-cd explorer
-npm install
-
-ng serve
-
-output: http://localhost:4200
-
-file2: json-server
-cd  json-server
-npm install
-npm install -g json-server
-
-change the db.json file... then 
-
-json-server --watch db.json
-
-  output: http://localhost:3000/data
