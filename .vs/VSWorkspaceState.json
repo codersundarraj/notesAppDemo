@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\ui",
+    "\\src\\app\\ui\\folder",
+    "\\src\\app\\ui\\home",
+    "\\src\\environments"
+  ],
+  "SelectedNode": "\\src\\environments\\environment.ts",
+  "PreviewInSolutionExplorer": false
+}

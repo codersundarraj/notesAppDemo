@@ -89,7 +89,7 @@ export class HomeComponent implements OnInit {
   }
 
   //add new folder
-  createFolder(ev){
+  createFolder(){
     var folderName = prompt("Folder Name", "");
     var newFolder = {
       id: Math.floor(100000000 + Math.random() * 900000000),

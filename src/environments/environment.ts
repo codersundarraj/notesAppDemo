@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  serverURI: "http://my-json-server.typicode.com/codersundarraj/Interview_Test/blob/master/"
+    serverURI: "http://localhost:3000"
 };
 
 /*
